@@ -8,7 +8,8 @@
     "build": "tsc",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "sync:wantlist": "tsx src/scripts/sync-wantlist.ts"
+    "sync:wantlist": "tsx src/scripts/sync-wantlist.ts",
+    "sync:collection": "tsx src/scripts/sync-collection.ts"
   },
   "dependencies": {
     "hono": "^4.6.0",
