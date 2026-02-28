@@ -21,3 +21,20 @@ wantlistRoutes.get("/", async (c) => {
 
   return c.json(rows)
 })
+
+wantlistRoutes.patch("/:id/subscribe", async (c) => {
+  const id = Number(c.req.param("id"))
+  const { subscribed } = await c.req.json<{ subscribed: boolean }>()
+
+  const [row] = await db
+    .update(wantlistItems)
+    .set({ subscribed })
+    .where(eq(wantlistItems.id, id))
+    .returning()
+
+  if (!row) {
+    return c.json({ error: "not found" }, 404)
+  }
+
+  return c.json(row)
+})
