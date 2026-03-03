@@ -20,3 +20,11 @@ export interface WantlistItem {
   subscribed: boolean
   release: Release
 }
+
+export interface CollectionItem {
+  id: number
+  rating: number | null
+  notes: string | null
+  date_added: string | null
+  release: Release
+}
