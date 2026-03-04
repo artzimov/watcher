@@ -10,29 +10,32 @@ export function Collection() {
   }, [])
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Cover</th>
-          <th>Artist</th>
-          <th>Title</th>
-          <th>Year</th>
-          <th>Rating</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map((item) => (
-          <tr key={item.id}>
-            <td>
-              {item.release.thumb && <img src={item.release.thumb} alt={item.release.title} />}
-            </td>
-            <td>{item.release.artists?.map((a) => a.name).join(", ")}</td>
-            <td>{item.release.title}</td>
-            <td>{item.release.year}</td>
-            <td>{item.rating}</td>
+    <>
+      <h1>Collection</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Cover</th>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rating</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id}>
+              <td>
+                {item.release.thumb && <img src={item.release.thumb} alt={item.release.title} />}
+              </td>
+              <td>{item.release.artists?.map((a) => a.name).join(", ")}</td>
+              <td>{item.release.title}</td>
+              <td>{item.release.year}</td>
+              <td>{item.rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   )
 }
