@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchCollection } from "../lib/api"
 import type { CollectionItem } from "../types"
+import "./Collection.css"
 
 export function Collection() {
   const [items, setItems] = useState<CollectionItem[]>([])
@@ -12,7 +13,7 @@ export function Collection() {
   return (
     <>
       <h1>Collection</h1>
-      <table>
+      <table className="collection-table">
         <thead>
           <tr>
             <th>Cover</th>
@@ -28,10 +29,10 @@ export function Collection() {
               <td>
                 {item.release.thumb && <img src={item.release.thumb} alt={item.release.title} />}
               </td>
-              <td>{item.release.artists?.map((a) => a.name).join(", ")}</td>
-              <td>{item.release.title}</td>
+              <td className="artist">{item.release.artists?.map((a) => a.name).join(", ")}</td>
+              <td className="title">{item.release.title}</td>
               <td>{item.release.year}</td>
-              <td>{item.rating}</td>
+              <td>{item.rating ?? "—"}</td>
             </tr>
           ))}
         </tbody>
