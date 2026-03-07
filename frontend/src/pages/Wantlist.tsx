@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchWantlist } from "../lib/api"
 import type { WantlistItem } from "../types"
+import "./Wantlist.css"
 
 export function Wantlist() {
   const [items, setItems] = useState<WantlistItem[]>([])
@@ -12,7 +13,7 @@ export function Wantlist() {
   return (
     <>
       <h1>Wantlist</h1>
-      <table>
+      <table className="wantlist-table">
         <thead>
           <tr>
             <th>Cover</th>
@@ -29,11 +30,15 @@ export function Wantlist() {
               <td>
                 {item.release.thumb && <img src={item.release.thumb} alt={item.release.title} />}
               </td>
-              <td>{item.release.artists?.map((a) => a.name).join(", ")}</td>
-              <td>{item.release.title}</td>
+              <td className="artist">{item.release.artists?.map((a) => a.name).join(", ")}</td>
+              <td className="title">{item.release.title}</td>
               <td>{item.release.year}</td>
-              <td>{item.rating}</td>
-              <td>{item.subscribed ? "yes" : "no"}</td>
+              <td><span className="rating-badge">★ {item.rating}</span></td>
+              <td>
+                <button className={`subscribe-toggle ${item.subscribed ? "subscribed" : ""}`}>
+                  {item.subscribed ? "Subscribed" : "Subscribe"}
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
