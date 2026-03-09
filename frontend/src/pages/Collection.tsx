@@ -4,7 +4,7 @@ import type { CollectionItem } from "../types"
 import "./Collection.css"
 
 export function Collection() {
-  const [items, setItems] = useState<CollectionItem[]>([])
+  const [items, setItems] = useState<CollectionItem[] | null>(null)
 
   useEffect(() => {
     fetchCollection().then(setItems)
@@ -13,30 +13,36 @@ export function Collection() {
   return (
     <>
       <h1>Collection</h1>
-      <table className="collection-table">
-        <thead>
-          <tr>
-            <th>Cover</th>
-            <th>Artist</th>
-            <th>Title</th>
-            <th>Year</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item.id}>
-              <td>
-                {item.release.thumb && <img src={item.release.thumb} alt={item.release.title} />}
-              </td>
-              <td className="artist">{item.release.artists?.map((a) => a.name).join(", ")}</td>
-              <td className="title">{item.release.title}</td>
-              <td>{item.release.year}</td>
-              <td>{item.rating ?? "—"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {items === null && <p className="status">Loading…</p>}
+      {items?.length === 0 && <p className="status">No collection items yet.</p>}
+      {items && items.length > 0 && (
+        <div className="table-scroll">
+          <table className="collection-table">
+            <thead>
+              <tr>
+                <th>Cover</th>
+                <th>Artist</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    {item.release.thumb && <img src={item.release.thumb} alt={item.release.title} />}
+                  </td>
+                  <td className="artist">{item.release.artists?.map((a) => a.name).join(", ")}</td>
+                  <td className="title">{item.release.title}</td>
+                  <td>{item.release.year}</td>
+                  <td>{item.rating ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   )
 }
