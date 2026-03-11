@@ -1,4 +1,4 @@
-import { pgTable, integer, smallint, serial, text, boolean, timestamp, json, unique } from "drizzle-orm/pg-core"
+import { pgTable, integer, smallint, serial, text, boolean, timestamp, json, unique, bigint } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
 
 export const releases = pgTable("releases", {
@@ -27,7 +27,7 @@ export const wantlistItems = pgTable("wantlist_items", {
 export const collectionItems = pgTable("collection_items", {
   id: serial("id").primaryKey(),
   release_id: integer().notNull().references(() => releases.id),
-  instance_id: integer().notNull().unique(),
+  instance_id: bigint({ mode: "number" }).notNull().unique(),
   folder_id: integer(),
   rating: smallint(),
   notes: text(),

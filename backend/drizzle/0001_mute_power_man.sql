@@ -1,0 +1,1 @@
+ALTER TABLE "collection_items" ALTER COLUMN "instance_id" SET DATA TYPE bigint;
