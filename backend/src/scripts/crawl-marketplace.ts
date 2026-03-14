@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm"
 import { db } from "../db"
 import { releases, wantlistItems } from "../db/schema"
+import { saveListingsForRelease } from "../db/upsert-listing"
 import { withAuthedPage } from "../marketplace/browser"
 import { parseListings } from "../marketplace/parse-listings"
 
@@ -18,7 +19,7 @@ async function fetchListingsForRelease(discogsId: number) {
 
 async function crawlMarketplace() {
   const subscribed = await db
-    .select({ discogsId: releases.discogs_id, title: releases.title })
+    .select({ id: releases.id, discogsId: releases.discogs_id, title: releases.title })
     .from(wantlistItems)
     .innerJoin(releases, eq(wantlistItems.release_id, releases.id))
     .where(eq(wantlistItems.subscribed, true))
@@ -27,7 +28,8 @@ async function crawlMarketplace() {
 
   for (const release of subscribed) {
     const listings = await fetchListingsForRelease(release.discogsId)
-    console.log(`${release.title}: ${listings.length} listings`)
+    await saveListingsForRelease(release.id, listings)
+    console.log(`${release.title}: ${listings.length} listings saved`)
   }
 }
 
