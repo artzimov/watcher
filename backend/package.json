@@ -9,19 +9,22 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "sync:wantlist": "tsx src/scripts/sync-wantlist.ts",
-    "sync:collection": "tsx src/scripts/sync-collection.ts"
+    "sync:collection": "tsx src/scripts/sync-collection.ts",
+    "crawl:marketplace": "tsx src/scripts/crawl-marketplace.ts"
   },
   "dependencies": {
-    "hono": "^4.6.0",
     "@hono/node-server": "^1.13.0",
     "@neondatabase/serverless": "^1.0.2",
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
-    "dotenv": "^17.2.3"
+    "hono": "^4.6.0",
+    "playwright": "^1.61.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "drizzle-kit": "^0.31.8",
     "tsx": "^4.19.0",
-    "typescript": "^5.6.0",
-    "drizzle-kit": "^0.31.8"
+    "typescript": "^5.6.0"
   }
 }
