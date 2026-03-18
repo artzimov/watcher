@@ -20,18 +20,26 @@ async function upsertSeller(listing: ParsedListing): Promise<number> {
   return row.id
 }
 
-export async function saveListingsForRelease(releaseId: number, parsed: ParsedListing[]) {
-  const seenListingIds: string[] = []
+export async function upsertListing(releaseId: number, listing: ParsedListing) {
+  const sellerId = await upsertSeller(listing)
 
-  for (const listing of parsed) {
-    const sellerId = await upsertSeller(listing)
-    seenListingIds.push(listing.listingId)
-
-    await db
-      .insert(listings)
-      .values({
-        listing_id: listing.listingId,
-        release_id: releaseId,
+  await db
+    .insert(listings)
+    .values({
+      listing_id: listing.listingId,
+      release_id: releaseId,
+      seller_id: sellerId,
+      condition: listing.condition,
+      sleeve_condition: listing.sleeveCondition,
+      price: listing.price,
+      currency: listing.currency,
+      shipping_price: listing.shippingPrice,
+      location: listing.location,
+      comments: listing.comments,
+    })
+    .onConflictDoUpdate({
+      target: listings.listing_id,
+      set: {
         seller_id: sellerId,
         condition: listing.condition,
         sleeve_condition: listing.sleeveCondition,
@@ -40,20 +48,16 @@ export async function saveListingsForRelease(releaseId: number, parsed: ParsedLi
         shipping_price: listing.shippingPrice,
         location: listing.location,
         comments: listing.comments,
-      })
-      .onConflictDoUpdate({
-        target: listings.listing_id,
-        set: {
-          seller_id: sellerId,
-          condition: listing.condition,
-          sleeve_condition: listing.sleeveCondition,
-          price: listing.price,
-          currency: listing.currency,
-          shipping_price: listing.shippingPrice,
-          location: listing.location,
-          comments: listing.comments,
-        },
-      })
+      },
+    })
+}
+
+export async function saveListingsForRelease(releaseId: number, parsed: ParsedListing[]) {
+  const seenListingIds: string[] = []
+
+  for (const listing of parsed) {
+    await upsertListing(releaseId, listing)
+    seenListingIds.push(listing.listingId)
   }
 
   if (seenListingIds.length > 0) {

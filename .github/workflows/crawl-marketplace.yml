@@ -1,27 +1,30 @@
-name: Crawl marketplace
-
-on:
-  schedule:
-    - cron: "0 * * * *"
-  workflow_dispatch: {}
-
-jobs:
-  crawl:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - run: npm ci
-
-      - run: npx playwright install --with-deps chromium
-        working-directory: backend
-
-      - run: npm run crawl:marketplace
-        working-directory: backend
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DISCOGS_SESSION_COOKIE: ${{ secrets.DISCOGS_SESSION_COOKIE }}
+# Disabled: replaced by the Gmail/Apps Script saved-search ingestion approach.
+# Kept here in case we fall back to crawling later.
+#
+# name: Crawl marketplace
+#
+# on:
+#   schedule:
+#     - cron: "0 * * * *"
+#   workflow_dispatch: {}
+#
+# jobs:
+#   crawl:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 22
+#
+#       - run: npm ci
+#
+#       - run: npx playwright install --with-deps chromium
+#         working-directory: backend
+#
+#       - run: npm run crawl:marketplace
+#         working-directory: backend
+#         env:
+#           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+#           DISCOGS_SESSION_COOKIE: ${{ secrets.DISCOGS_SESSION_COOKIE }}
