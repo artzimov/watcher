@@ -1,3 +1,6 @@
+// CLI script — for every subscribed wantlist release, scrapes its Discogs marketplace listing
+// page via an authenticated headless browser and syncs the parsed listings to the database.
+// Run manually or on a schedule; intended as the polling alternative to the email-ingest Apps Script.
 import { eq } from "drizzle-orm"
 import { db } from "../db"
 import { releases, wantlistItems } from "../db/schema"

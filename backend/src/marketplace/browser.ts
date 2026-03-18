@@ -1,3 +1,5 @@
+// Launches a headless, cookie-authenticated Playwright browser session against discogs.com.
+// Used by the marketplace crawler since listing pages require a logged-in session (no public API).
 import "dotenv/config"
 import { chromium, type BrowserContext } from "playwright"
 

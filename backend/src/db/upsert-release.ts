@@ -1,3 +1,5 @@
+// Upserts a Discogs release into the shared releases table, keyed on discogs_id.
+// Called by both the wantlist and collection sync scripts before inserting their own item rows.
 import { db } from "./index"
 import { releases } from "./schema"
 import type { DiscogsBasicInformation } from "../discogs/types"

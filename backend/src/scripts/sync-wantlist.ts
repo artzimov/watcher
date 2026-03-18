@@ -1,3 +1,5 @@
+// CLI script — paginates through the Discogs wantlist (sorted by rating desc) and imports only
+// 5-star items, stopping as soon as a lower rating is hit. Run manually to refresh the wantlist.
 import { db } from "../db"
 import { wantlistItems } from "../db/schema"
 import { upsertRelease } from "../db/upsert-release"

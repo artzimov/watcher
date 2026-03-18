@@ -1,3 +1,5 @@
+// POST /api/listings/ingest — bearer-secret-protected endpoint for the Gmail Apps Script parser.
+// Looks up the release by Discogs ID and upserts the listing; 404s if the release isn't tracked.
 import { Hono } from "hono"
 import { eq } from "drizzle-orm"
 import { db } from "../db"

@@ -1,3 +1,4 @@
+// Backend entry point — Hono app wiring wantlist/collection/listings routes and starting the HTTP server.
 import { Hono } from "hono"
 import { serve } from "@hono/node-server"
 import { cors } from "hono/cors"

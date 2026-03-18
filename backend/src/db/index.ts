@@ -1,3 +1,5 @@
+// Drizzle DB client singleton, backed by Neon serverless Postgres.
+// Imported by every module that needs to read/write the database.
 import "dotenv/config"
 import { drizzle } from "drizzle-orm/neon-serverless"
 

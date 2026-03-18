@@ -1,3 +1,6 @@
+// Drizzle table definitions and relations for the whole app.
+// releases is the shared release catalog; wantlistItems/collectionItems reference it 1:1 per Discogs item.
+// listings holds marketplace offers scraped/ingested for subscribed releases, each tied to a seller.
 import { pgTable, integer, smallint, serial, text, boolean, timestamp, json, unique, bigint } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
 

@@ -1,3 +1,5 @@
+// CLI script — paginates through the user's full Discogs collection (folder 0 = "All") and
+// upserts each release plus its collection_items row (instance_id is the dedup key). Run manually.
 import { db } from "../db"
 import { collectionItems } from "../db/schema"
 import { upsertRelease } from "../db/upsert-release"

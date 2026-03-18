@@ -1,3 +1,5 @@
+// Scrapes a Discogs marketplace listing-page HTML into structured ParsedListing rows.
+// Used by the Playwright crawler; the email-ingest Apps Script produces compatible payloads independently.
 import * as cheerio from "cheerio"
 
 export interface ParsedListing {

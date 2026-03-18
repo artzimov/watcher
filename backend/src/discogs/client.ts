@@ -1,3 +1,5 @@
+// Thin authenticated fetch wrapper around the official Discogs REST API.
+// Requires DISCOGS_TOKEN and DISCOGS_USERNAME in the environment.
 import "dotenv/config"
 
 const BASE_URL = "https://api.discogs.com"

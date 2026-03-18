@@ -1,3 +1,5 @@
+// GET /api/wantlist — lists wanted records joined with release info, newest first.
+// PATCH /api/wantlist/:id/subscribe — toggles marketplace-listing tracking for one wantlist item.
 import { Hono } from "hono"
 import { desc, eq } from "drizzle-orm"
 import { db } from "../db"

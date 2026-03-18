@@ -1,3 +1,4 @@
+// GET /api/collection — lists owned records joined with their release info, newest first.
 import { Hono } from "hono"
 import { desc, eq } from "drizzle-orm"
 import { db } from "../db"

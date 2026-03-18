@@ -1,3 +1,5 @@
+// TypeScript shapes for the subset of the Discogs REST API responses this app consumes
+// (wantlist and collection endpoints, plus the shared basic_information release payload).
 export interface DiscogsArtist {
   id: number
   name: string
