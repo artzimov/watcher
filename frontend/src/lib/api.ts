@@ -11,3 +11,11 @@ export async function fetchCollection(): Promise<CollectionItem[]> {
   const response = await fetch(`${API_URL}/collection`)
   return response.json()
 }
+
+export async function toggleSubscribe(id: number, subscribed: boolean): Promise<void> {
+  await fetch(`${API_URL}/wantlist/${id}/subscribe`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ subscribed }),
+  })
+}
