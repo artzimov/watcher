@@ -131,6 +131,31 @@ main {
   margin-top: 1rem;
 }
 
+/* ── Page header with inline table filter ───────── */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.table-filter {
+  width: 220px;
+  padding: 4px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.table-filter:focus {
+  border-color: var(--accent);
+}
+
 /* ── Shared records table ────────────────────────── */
 
 .records-table {

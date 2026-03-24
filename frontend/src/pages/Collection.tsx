@@ -1,35 +1,39 @@
 import { useEffect, useState } from "react"
 import { fetchCollection } from "../lib/api"
+import { timeAgo, filterCollection } from "../lib/search"
 import type { CollectionItem } from "../types"
 import "./Collection.css"
 
-function timeAgo(s: string | null): string {
-  if (!s) return "—"
-  const ms = Date.now() - new Date(s).getTime()
-  const days = Math.floor(ms / 86400000)
-  if (days < 1) return "today"
-  if (days < 30) return `${days}d ago`
-  const months = Math.floor(days / 30)
-  if (months < 12) return `${months}mo ago`
-  return `${Math.floor(days / 365)}y ago`
-}
-
 export function Collection() {
   const [items, setItems] = useState<CollectionItem[] | null>(null)
+  const [query, setQuery] = useState("")
 
   useEffect(() => {
     fetchCollection().then(setItems)
   }, [])
 
+  const displayed = items ? filterCollection(items, query) : null
+
   return (
     <>
-      <h1>
-        Collection
-        {items && <span className="count">({items.length})</span>}
-      </h1>
+      <div className="page-header">
+        <h1>
+          Collection
+          {items && <span className="count">({items.length})</span>}
+        </h1>
+        {items && items.length > 0 && (
+          <input
+            className="table-filter"
+            placeholder="Filter…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        )}
+      </div>
       {items === null && <p className="status">Loading…</p>}
       {items?.length === 0 && <p className="status">No collection items yet.</p>}
-      {items && items.length > 0 && (
+      {displayed && displayed.length === 0 && query && <p className="status">No matches.</p>}
+      {displayed && displayed.length > 0 && (
         <div className="table-scroll">
           <table className="records-table">
             <thead>
@@ -43,7 +47,7 @@ export function Collection() {
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => (
+              {displayed.map((item) => (
                 <tr key={item.id}>
                   <td className="col-cover">
                     {item.release.thumb
