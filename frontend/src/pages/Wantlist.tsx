@@ -1,3 +1,5 @@
+// Wantlist page — shows the user's 5-star want items with format, year, and Watch toggle.
+// The Watch button optimistically flips the subscribed flag then PATCHes /wantlist/:id/subscribe.
 import { useEffect, useState } from "react"
 import { fetchWantlist, toggleSubscribe } from "../lib/api"
 import { timeAgo, filterWantlist } from "../lib/search"

@@ -1,3 +1,5 @@
+// Shared TypeScript interfaces mirroring the backend JSON API response shapes.
+// Release is embedded (not normalized) inside both WantlistItem and CollectionItem.
 export interface Release {
   id: number
   discogs_id: number

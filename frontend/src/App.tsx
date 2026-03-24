@@ -1,3 +1,4 @@
+// Route tree — maps URL paths to page components nested under the shared Layout.
 import { Routes, Route } from "react-router-dom"
 import { Layout } from "./Layout"
 import { Wantlist } from "./pages/Wantlist"

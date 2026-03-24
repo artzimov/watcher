@@ -1,3 +1,5 @@
+// Collection page — shows all owned records with cover thumbnail, release info, and star rating.
+// Read-only; fetches once on mount, no user interactions.
 import { useEffect, useState } from "react"
 import { fetchCollection } from "../lib/api"
 import { timeAgo, filterCollection } from "../lib/search"

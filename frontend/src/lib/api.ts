@@ -1,3 +1,5 @@
+// HTTP client wrapping the backend REST API.
+// VITE_API_URL overrides the localhost:8787 default for staging/production builds.
 import type { CollectionItem, WantlistItem } from "../types"
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8787/api"
