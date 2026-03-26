@@ -2,9 +2,9 @@
 // Shared between the local dev server (src/index.ts) and the Vercel Function (api/[[...route]].ts).
 import { Hono } from "hono"
 import { cors } from "hono/cors"
-import { wantlistRoutes } from "./routes/wantlist"
-import { collectionRoutes } from "./routes/collection"
-import { listingsRoutes } from "./routes/listings"
+import { wantlistRoutes } from "./routes/wantlist.js"
+import { collectionRoutes } from "./routes/collection.js"
+import { listingsRoutes } from "./routes/listings.js"
 
 export const app = new Hono()
 

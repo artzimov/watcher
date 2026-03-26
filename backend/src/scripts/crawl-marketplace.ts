@@ -2,11 +2,11 @@
 // page via an authenticated headless browser and syncs the parsed listings to the database.
 // Run manually or on a schedule; intended as the polling alternative to the email-ingest Apps Script.
 import { eq } from "drizzle-orm"
-import { db } from "../db"
-import { releases, wantlistItems } from "../db/schema"
-import { saveListingsForRelease } from "../db/upsert-listing"
-import { withAuthedPage } from "../marketplace/browser"
-import { parseListings } from "../marketplace/parse-listings"
+import { db } from "../db/index.js"
+import { releases, wantlistItems } from "../db/schema.js"
+import { saveListingsForRelease } from "../db/upsert-listing.js"
+import { withAuthedPage } from "../marketplace/browser.js"
+import { parseListings } from "../marketplace/parse-listings.js"
 
 async function fetchListingsForRelease(discogsId: number) {
   return withAuthedPage(async (page) => {

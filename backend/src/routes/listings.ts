@@ -2,10 +2,10 @@
 // Looks up the release by Discogs ID and upserts the listing; 404s if the release isn't tracked.
 import { Hono } from "hono"
 import { eq } from "drizzle-orm"
-import { db } from "../db"
-import { releases } from "../db/schema"
-import { upsertListing } from "../db/upsert-listing"
-import type { ParsedListing } from "../marketplace/parse-listings"
+import { db } from "../db/index.js"
+import { releases } from "../db/schema.js"
+import { upsertListing } from "../db/upsert-listing.js"
+import type { ParsedListing } from "../marketplace/parse-listings.js"
 
 export const listingsRoutes = new Hono()
 

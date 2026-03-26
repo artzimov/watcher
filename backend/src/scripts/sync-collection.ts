@@ -1,10 +1,10 @@
 // CLI script — paginates through the user's full Discogs collection (folder 0 = "All") and
 // upserts each release plus its collection_items row (instance_id is the dedup key). Run manually.
-import { db } from "../db"
-import { collectionItems } from "../db/schema"
-import { upsertRelease } from "../db/upsert-release"
-import { discogsGet, discogsUsername } from "../discogs/client"
-import type { DiscogsCollectionResponse } from "../discogs/types"
+import { db } from "../db/index.js"
+import { collectionItems } from "../db/schema.js"
+import { upsertRelease } from "../db/upsert-release.js"
+import { discogsGet, discogsUsername } from "../discogs/client.js"
+import type { DiscogsCollectionResponse } from "../discogs/types.js"
 
 async function syncCollection() {
   let page = 1

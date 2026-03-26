@@ -2,8 +2,8 @@
 // PATCH /api/wantlist/:id/subscribe — toggles marketplace-listing tracking for one wantlist item.
 import { Hono } from "hono"
 import { desc, eq } from "drizzle-orm"
-import { db } from "../db"
-import { releases, wantlistItems } from "../db/schema"
+import { db } from "../db/index.js"
+import { releases, wantlistItems } from "../db/schema.js"
 
 export const wantlistRoutes = new Hono()
 

@@ -1,8 +1,8 @@
 // GET /api/collection — lists owned records joined with their release info, newest first.
 import { Hono } from "hono"
 import { desc, eq } from "drizzle-orm"
-import { db } from "../db"
-import { collectionItems, releases } from "../db/schema"
+import { db } from "../db/index.js"
+import { collectionItems, releases } from "../db/schema.js"
 
 export const collectionRoutes = new Hono()
 

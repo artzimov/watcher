@@ -1,9 +1,9 @@
 // Persists marketplace listings, deduping sellers and upserting on listing_id.
 // saveListingsForRelease also deletes stale listings no longer present in a fresh crawl result.
 import { and, eq, notInArray } from "drizzle-orm"
-import { db } from "./index"
-import { listings, sellers } from "./schema"
-import type { ParsedListing } from "../marketplace/parse-listings"
+import { db } from "./index.js"
+import { listings, sellers } from "./schema.js"
+import type { ParsedListing } from "../marketplace/parse-listings.js"
 
 async function upsertSeller(listing: ParsedListing): Promise<number> {
   const [row] = await db

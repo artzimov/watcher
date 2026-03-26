@@ -1,8 +1,8 @@
 // Upserts a Discogs release into the shared releases table, keyed on discogs_id.
 // Called by both the wantlist and collection sync scripts before inserting their own item rows.
-import { db } from "./index"
-import { releases } from "./schema"
-import type { DiscogsBasicInformation } from "../discogs/types"
+import { db } from "./index.js"
+import { releases } from "./schema.js"
+import type { DiscogsBasicInformation } from "../discogs/types.js"
 
 export async function upsertRelease(info: DiscogsBasicInformation): Promise<number> {
   const values = {

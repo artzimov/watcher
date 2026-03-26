@@ -1,10 +1,10 @@
 // CLI script — paginates through the Discogs wantlist (sorted by rating desc) and imports only
 // 5-star items, stopping as soon as a lower rating is hit. Run manually to refresh the wantlist.
-import { db } from "../db"
-import { wantlistItems } from "../db/schema"
-import { upsertRelease } from "../db/upsert-release"
-import { discogsGet, discogsUsername } from "../discogs/client"
-import type { DiscogsWantlistResponse } from "../discogs/types"
+import { db } from "../db/index.js"
+import { wantlistItems } from "../db/schema.js"
+import { upsertRelease } from "../db/upsert-release.js"
+import { discogsGet, discogsUsername } from "../discogs/client.js"
+import type { DiscogsWantlistResponse } from "../discogs/types.js"
 
 async function syncWantlist() {
   let page = 1
