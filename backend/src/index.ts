@@ -1,20 +1,7 @@
-// Backend entry point — Hono app wiring wantlist/collection/listings routes and starting the HTTP server.
-import { Hono } from "hono"
+// Local dev entry point — starts the Hono app on a persistent Node server via @hono/node-server.
+// Production on Vercel uses api/[[...route]].ts instead, which wraps the same app for serverless.
 import { serve } from "@hono/node-server"
-import { cors } from "hono/cors"
-import { wantlistRoutes } from "./routes/wantlist"
-import { collectionRoutes } from "./routes/collection"
-import { listingsRoutes } from "./routes/listings"
-
-const app = new Hono()
-
-app.use("/api/*", cors())
-
-app.get("/health", (c) => c.json({ status: "ok" }))
-
-app.route("/api/wantlist", wantlistRoutes)
-app.route("/api/collection", collectionRoutes)
-app.route("/api/listings", listingsRoutes)
+import { app } from "./app"
 
 const port = 8787
 
