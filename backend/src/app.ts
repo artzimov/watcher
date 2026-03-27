@@ -6,7 +6,7 @@ import { wantlistRoutes } from "./routes/wantlist.js"
 import { collectionRoutes } from "./routes/collection.js"
 import { listingsRoutes } from "./routes/listings.js"
 
-export const app = new Hono()
+const app = new Hono()
 
 app.use("/api/*", cors())
 
@@ -15,3 +15,5 @@ app.get("/health", (c) => c.json({ status: "ok" }))
 app.route("/api/wantlist", wantlistRoutes)
 app.route("/api/collection", collectionRoutes)
 app.route("/api/listings", listingsRoutes)
+
+export default app
