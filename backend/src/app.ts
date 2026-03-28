@@ -1,5 +1,5 @@
 // Hono app definition — wires wantlist/collection/listings routes.
-// Shared between the local dev server (src/index.ts) and the Vercel Function (api/[[...route]].ts).
+// Shared between the local dev server (src/index.ts) and the Vercel Function (api/[...route].ts).
 import { Hono } from "hono"
 import { cors } from "hono/cors"
 import { wantlistRoutes } from "./routes/wantlist.js"

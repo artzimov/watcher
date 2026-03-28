@@ -1,5 +1,5 @@
 // Local dev entry point — starts the Hono app on a persistent Node server via @hono/node-server.
-// Production on Vercel uses api/[[...route]].ts instead, which wraps the same app for serverless.
+// Production on Vercel uses api/[...route].ts instead, which wraps the same app for serverless.
 import { serve } from "@hono/node-server"
 import app from "./app.js"
 
