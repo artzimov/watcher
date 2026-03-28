@@ -8,4 +8,6 @@ export const config = {
   runtime: "nodejs",
 }
 
-export default handle(app)
+// Named "fetch" export (not default) signals the Web fetch-style handler contract to Vercel's
+// Node.js runtime — a default export is assumed to be the legacy (req, res) => void signature.
+export const fetch = handle(app)
