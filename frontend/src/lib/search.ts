@@ -7,12 +7,16 @@ import type { WantlistItem, CollectionItem } from "../types"
 
 export function timeAgo(s: string | null): string {
   if (!s) return "—"
+
   const ms = Date.now() - new Date(s).getTime()
+
   const days = Math.floor(ms / 86400000)
   if (days < 1) return "today"
   if (days < 30) return `${days}d ago`
+
   const months = Math.floor(days / 30)
   if (months < 12) return `${months}mo ago`
+
   return `${Math.floor(days / 365)}y ago`
 }
 

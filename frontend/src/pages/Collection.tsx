@@ -1,37 +1,19 @@
-// Collection page — shows all owned records with cover thumbnail, release info, and star rating.
-// Read-only; fetches once on mount, no user interactions.
-import { useEffect, useState } from "react"
-import { fetchCollection } from "../lib/api"
+// Collection table — presentational only; Home owns fetching and filter state.
+// Renders release info, format/year/added, and a star rating per row.
 import { timeAgo, filterCollection } from "../lib/search"
 import type { CollectionItem } from "../types"
 import "./Collection.css"
 
-export function Collection() {
-  const [items, setItems] = useState<CollectionItem[] | null>(null)
-  const [query, setQuery] = useState("")
+interface CollectionProps {
+  items: CollectionItem[] | null
+  query: string
+}
 
-  useEffect(() => {
-    fetchCollection().then(setItems)
-  }, [])
-
+export function Collection({ items, query }: CollectionProps) {
   const displayed = items ? filterCollection(items, query) : null
 
   return (
     <>
-      <div className="page-header">
-        <h1>
-          Collection
-          {items && <span className="count">({items.length})</span>}
-        </h1>
-        {items && items.length > 0 && (
-          <input
-            className="table-filter"
-            placeholder="Filter…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        )}
-      </div>
       {items === null && <p className="status">Loading…</p>}
       {items?.length === 0 && <p className="status">No collection items yet.</p>}
       {displayed && displayed.length === 0 && query && <p className="status">No matches.</p>}

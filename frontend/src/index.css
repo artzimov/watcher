@@ -88,30 +88,6 @@ header {
   color: var(--accent);
 }
 
-header nav {
-  display: flex;
-  gap: 0.25rem;
-}
-
-header nav a {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.375rem 0.75rem;
-  border-radius: 6px;
-  transition: color 0.15s, background 0.15s;
-}
-
-header nav a:hover {
-  color: var(--text);
-  background: var(--bg-hover);
-}
-
-header nav a.active {
-  color: var(--text);
-  background: var(--bg-hover);
-}
-
 main {
   max-width: 1200px;
   width: 100%;
@@ -154,6 +130,34 @@ main {
 
 .table-filter:focus {
   border-color: var(--accent);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.tab {
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.active {
+  color: var(--text);
+  background: var(--bg-hover);
 }
 
 /* ── Shared records table ────────────────────────── */

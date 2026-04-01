@@ -1,7 +1,5 @@
-// Wantlist page — shows the user's 5-star want items with format, year, and Watch toggle.
-// The Watch button optimistically flips the subscribed flag then PATCHes /wantlist/:id/subscribe.
-import { useEffect, useState } from "react"
-import { fetchWantlist, toggleSubscribe } from "../lib/api"
+// Wantlist table — presentational only; Home owns fetching, filter state, and the subscribe handler.
+// Renders release info, format/year/added, and a Watch/Watching toggle per row.
 import { timeAgo, filterWantlist } from "../lib/search"
 import type { WantlistItem } from "../types"
 import "./Wantlist.css"
@@ -10,38 +8,17 @@ function formatRelease(item: WantlistItem) {
   return item.release.formats?.map((f) => f.name).join(", ") ?? "—"
 }
 
-export function Wantlist() {
-  const [items, setItems] = useState<WantlistItem[] | null>(null)
-  const [query, setQuery] = useState("")
+interface WantlistProps {
+  items: WantlistItem[] | null
+  query: string
+  onSubscribeToggle: (item: WantlistItem) => void
+}
 
-  useEffect(() => {
-    fetchWantlist().then(setItems)
-  }, [])
-
+export function Wantlist({ items, query, onSubscribeToggle }: WantlistProps) {
   const displayed = items ? filterWantlist(items, query) : null
-
-  const handleSubscribe = async (item: WantlistItem) => {
-    const next = !item.subscribed
-    setItems((prev) => prev!.map((i) => (i.id === item.id ? { ...i, subscribed: next } : i)))
-    await toggleSubscribe(item.id, next)
-  }
 
   return (
     <>
-      <div className="page-header">
-        <h1>
-          Wantlist
-          {items && <span className="count">({items.length})</span>}
-        </h1>
-        {items && items.length > 0 && (
-          <input
-            className="table-filter"
-            placeholder="Filter…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        )}
-      </div>
       {items === null && <p className="status">Loading…</p>}
       {items?.length === 0 && <p className="status">No 5-star wantlist items yet.</p>}
       {displayed && displayed.length === 0 && query && <p className="status">No matches.</p>}
@@ -85,7 +62,7 @@ export function Wantlist() {
                   <td className="col-action">
                     <button
                       className={`subscribe-toggle${item.subscribed ? " subscribed" : ""}`}
-                      onClick={() => handleSubscribe(item)}
+                      onClick={() => onSubscribeToggle(item)}
                     >
                       {item.subscribed ? "Watching" : "Watch"}
                     </button>

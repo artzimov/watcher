@@ -1,15 +1,14 @@
-// Route tree — maps URL paths to page components nested under the shared Layout.
+// Route tree — a single home route nested under the shared Layout.
+// Wantlist/Collection are tabs within Home, not separate routes.
 import { Routes, Route } from "react-router-dom"
 import { Layout } from "./Layout"
-import { Wantlist } from "./pages/Wantlist"
-import { Collection } from "./pages/Collection"
+import { Home } from "./pages/Home"
 
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Wantlist />} />
-        <Route path="collection" element={<Collection />} />
+        <Route index element={<Home />} />
       </Route>
     </Routes>
   )
