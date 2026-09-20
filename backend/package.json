@@ -22,7 +22,7 @@
     "playwright": "^1.61.1"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.20.1",
     "drizzle-kit": "^0.31.8",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0"

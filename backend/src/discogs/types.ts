@@ -88,25 +88,23 @@ export interface DiscogsCollectionItem {
 export interface DiscogsReleaseResponse {
   id: number;
   master_id: number;
+  uri: string;
   title: string;
   artists: DiscogsArtist[];
-  artists_sort: string;
   year: number;
   released: string;
+  country: string;
   genres: string[];
   styles: string[];
-  tracklist: { position: string, type_: string, title: string, duration?: string }[]
-  resource_url: string;
-  uri: string;
-  labels: DiscogsLabel[];
   formats: DiscogsFormat[];
-  community: { have: number, want: number, rating: { count: number, average: number } };
-  country: string;
-  notes: string;
+  labels: DiscogsLabel[];
+  tracklist: { position: string, type_: string, title: string, duration?: string }[]
   identifiers: { type: string; value: string; description?: string }[];
-  images: { type: "primary" | "secondary", uri: string, uri150: string, width: number, height: number }[];
-  num_for_sale: number;
   thumb: string;
+  images: { type: "primary" | "secondary", uri: string, uri150: string, width: number, height: number }[];
+  community: { have: number, want: number, rating: { count: number, average: number } };
+  notes: string;
+  date_added: Date;
   blocked_from_sale: boolean;
   is_offensive: boolean
 }
@@ -119,31 +117,21 @@ export interface DiscogsSeller {
   username: string;
   avatar_url: string;
   stats: { rating: string, stars: number, total: number };
-  min_order_total: number;
-  html_url: string;
-  uid: number;
-  url: string;
   payment: string;
   shipping: string;
-  resource_url: string;
 }
 
 export interface DiscogsListingResponse {
-  id: number;
-  resource_url: string;
-  uri: string;
+  listing_id: number;
+  release: { id: number };
+  seller: DiscogsSeller;
   status: string;
   condition: string;
   sleeve_condition: string;
-  comments: string;
   ships_from: string;
-  price: { value: number, currency: string };
-  original_price: { curr_abbr: string, curr_id: number, formatted: string, value: number };
-  shipping_price: object;
-  original_shipping_price: object;
-  seller_id: DiscogsSeller;
-  release: { id: number };
+  original_price: { curr_abbr: string, value: number };
+  original_shipping_price: { curr_abbr: string, value: number };
   posted: Date;
   allow_offers: boolean;
-  shipping_is_blocked: boolean
+  comments: string;
 }
